@@ -47,19 +47,6 @@ Este projeto utiliza aprendizado de máquina para classificar imagens de cães e
 - Matplotlib
 - Seaborn
 
-## Como Executar
-
-1. Clone o repositório:
-   ```bash
-   git clone <url-do-repositorio>
-   ```
-2. Instale as dependências:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Execute o notebook `main.ipynb` para treinar e avaliar o modelo.
-4. Utilize o módulo `model_usage` para realizar predições em novas imagens.
-
 ## Observações
 
 - Certifique-se de que o dataset está organizado nos diretórios corretos antes de executar o código.
