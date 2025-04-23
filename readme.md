@@ -1,11 +1,11 @@
-# Classificador de Imagens de Cães e Gatos
+# dog-v-cat
 
 Este projeto utiliza aprendizado de máquina para classificar imagens de cães e gatos. O modelo foi treinado utilizando a arquitetura **MobileNetV2** e implementado com a biblioteca **TensorFlow**.
 
 ## Funcionalidades Principais
 
 1. **Pré-processamento de Dados**:
-   - Redimensionamento de imagens para 300x300 pixels.
+   - Redimensionamento de imagens para 300x300 ou 224x224 pixels, depende do modelo em questão.
    - Normalização dos valores dos pixels.
 
 2. **Divisão do Dataset**:
@@ -35,9 +35,9 @@ Este projeto utiliza aprendizado de máquina para classificar imagens de cães e
 
 ## Resultados
 
-- **Acurácia de Treinamento**: ~XX% (substituir pelo valor real).
-- **Acurácia de Validação**: ~XX% (substituir pelo valor real).
-- **Recall**: ~XX% (substituir pelo valor real).
+- **Acurácia de Treinamento**: 99.58% (substituir pelo valor real).
+- **Acurácia de Validação**: 98.96% (substituir pelo valor real).
+- **Recall**: 99.2% (substituir pelo valor real).
 
 ## Requisitos
 
