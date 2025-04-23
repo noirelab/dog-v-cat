@@ -39,14 +39,6 @@ Este projeto utiliza aprendizado de máquina para classificar imagens de cães e
 - **Acurácia de Validação**: 98.96%
 - **Recall**: 99.2%
 
-## Requisitos
-
-- Python 3.x
-- TensorFlow
-- OpenCV
-- Matplotlib
-- Seaborn
-
 ## Observações
 
 - Certifique-se de que o dataset está organizado nos diretórios corretos antes de executar o código.
