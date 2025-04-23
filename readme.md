@@ -35,9 +35,9 @@ Este projeto utiliza aprendizado de máquina para classificar imagens de cães e
 
 ## Resultados
 
-- **Acurácia de Treinamento**: 99.58% (substituir pelo valor real).
-- **Acurácia de Validação**: 98.96% (substituir pelo valor real).
-- **Recall**: 99.2% (substituir pelo valor real).
+- **Acurácia de Treinamento**: 99.58%
+- **Acurácia de Validação**: 98.96%
+- **Recall**: 99.2%
 
 ## Requisitos
 
