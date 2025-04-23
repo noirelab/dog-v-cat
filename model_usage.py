@@ -78,23 +78,22 @@ def breed_preprocessing(file, size):
     return img
 
 def dog_or_cat_classifier(file):
-    model = load_model('C:/Users/kaiqu/dog-or-cat/modelos/dog_or_cat.keras')
+    model = load_model('C:/Users/kaiqu/projeto-final-backup/modelos/dog_or_cat.keras')
     img = dog_cat_preprocessing(file, 300)
 
-    # Exibe a imagem
     plt.imshow(img)
     plt.title("Imagem de Teste")
     plt.axis("off")
     plt.show()
 
-    # Expande a dimensão da imagem para incluir o batch dimension (ficar shape: (1, 256, 256, 3))
+    # Tem que expandir pra pra poder caber no modelo
     img_expanded = np.expand_dims(img, axis=0)
 
     pred_prob = model.predict(img_expanded)
     return pred_prob
 
 def dog_breed_classifier(file):
-    model = load_model('C:/Users/kaiqu/dog-or-cat/modelos/model_24_webscraped_classes.h5')
+    model = load_model('C:/Users/kaiqu/projeto-final-backup/modelos/model_24_webscraped_classes.h5')
 
     img = breed_preprocessing(file, 300)
     img_expanded = np.expand_dims(img, axis=0)
@@ -110,7 +109,7 @@ def dog_breed_classifier(file):
         print(f"Raça: {DOG_CLASSES[i]} - Probabilidade: {(previsao[0][i]) * 100:.2f}%")
 
 def cat_breed_classifier(file):
-    model = load_model('C:/Users/kaiqu/dog-or-cat/modelos/catbreed_model_v5.h5')
+    model = load_model('C:/Users/kaiqu/projeto-final-backup/modelos/catbreed_model_v5.h5')
 
     img = breed_preprocessing(file, 224)
     img_expanded = np.expand_dims(img, axis=0)
