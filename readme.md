@@ -1,26 +1,128 @@
-# Dog/Cat Classifier
-Este é projeto final do LAMIA, sendo uma aplicação de classificação de imagens para distinguir gatos e cachorros utilizando técnicas de transferência de aprendizado.
+# Classificador de Imagens de Cães e Gatos
 
-## 1. Organização dos Dados
-Foi usado o dataset ["Cat and Dog"](https://www.kaggle.com/datasets/tongpython/cat-and-dog), vindo do site Kaggle.
-Os dados são organizados em pastas, onde cada subpasta representa uma classe (por exemplo, "cats" e "dogs"). Tanto o conjunto de treinamento quanto o de teste seguem essa estrutura, permitindo que os rótulos sejam inferidos automaticamente.
+Este projeto utiliza aprendizado de máquina para classificar imagens de cães e gatos. O modelo foi treinado utilizando a arquitetura **MobileNetV2** e implementado com a biblioteca **TensorFlow**.
 
-![Dataset](/images/dataset.png)
+## Funcionalidades Principais
 
-## 2. Pré-processamento e Carregamento
-As imagens são carregadas e pré-processadas para garantir que todas tenham o mesmo tamanho (256x256 pixels) e sejam normalizadas (valores dos pixels ajustados para a faixa [0,1]). Esse pré-processamento é realizado utilizando bibliotecas como OpenCV e funções do TensorFlow, garantindo a consistência dos dados de entrada para o modelo.
+1. **Pré-processamento de Dados**:
+   - Redimensionamento de imagens para 300x300 pixels.
+   - Normalização dos valores dos pixels.
 
-## 3. Modelo de Transfer Learning
-O modelo utiliza o MobileNetV2 pré-treinado com pesos do ImageNet para extração de características visuais. As camadas do MobileNetV2 são congeladas para aproveitar o conhecimento prévio. Em seguida, uma nova cabeça de classificação é adicionada, composta por camadas de GlobalAveragePooling2D, Dense, e DropOut para reduzir o overfitting. A saída final é composta por uma única unidade com ativação sigmoid, adequada para problemas de classificação binária.
+2. **Divisão do Dataset**:
+   - Separação dos dados em conjuntos de treinamento e teste.
 
-## 4. Treinamento do Modelo
-O treinamento é realizado utilizando técnicas como Early Stopping e Checkpoints. O modelo é avaliado durante o treinamento com base no desempenho do conjunto de validação, interrompendo o treinamento caso não haja melhorias na perda de validação por um número definido de épocas. Isso assegura um treinamento eficiente e evita overfitting.
+3. **Modelo de Classificação**:
+   - Utilização do modelo **MobileNetV2** como base.
+   - Adição de camadas densas para ajuste fino e classificação binária.
 
-## 5. Avaliação e Métricas
-Após o treinamento, o desempenho do modelo é avaliado com métricas como acurácia, perda, recall e uma matriz de confusão. Essas métricas permitem identificar a eficácia do modelo na distinção entre as classes. Gráficos ilustram a evolução da acurácia e da perda durante o treinamento, fornecendo uma visão clara do comportamento do modelo.
-O modelo chegou nos seguintes resultados:
-- Acurácia de Treinamento: 99.56%
-- Acurácia de validação: 98.71%
-- Recall: 99.30%
+4. **Treinamento do Modelo**:
+   - Uso de callbacks como **EarlyStopping**, **ReduceLROnPlateau** e **ModelCheckpoint** para otimizar o treinamento.
 
-![Matriz Confusão](/images/confusion_matrix.png)
+5. **Avaliação e Visualização**:
+   - Geração de gráficos de acurácia e perda.
+   - Exibição de matriz de confusão e cálculo de métricas como **Recall**.
+
+6. **Predição em Imagens Reais**:
+   - Classificação de novas imagens utilizando o modelo treinado.
+
+## Estrutura do Código
+
+- **Importação de Bibliotecas**: Importa bibliotecas essenciais como TensorFlow, OpenCV, Matplotlib, entre outras.
+- **Carregamento de Dados**: Lê imagens do dataset e mapeia rótulos para valores inteiros.
+- **Treinamento**: Realiza o treinamento do modelo com o conjunto de dados de treinamento.
+- **Avaliação**: Avalia o modelo com o conjunto de teste e exibe métricas de desempenho.
+- **Teste Real**: Classifica imagens externas fornecidas pelo usuário.
+
+## Resultados
+
+- **Acurácia de Treinamento**: ~XX% (substituir pelo valor real).
+- **Acurácia de Validação**: ~XX% (substituir pelo valor real).
+- **Recall**: ~XX% (substituir pelo valor real).
+
+## Requisitos
+
+- Python 3.x
+- TensorFlow
+- OpenCV
+- Matplotlib
+- Seaborn
+
+## Como Executar
+
+1. Clone o repositório:
+   ```bash
+   git clone <url-do-repositorio>
+   ```
+2. Instale as dependências:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Execute o notebook `main.ipynb` para treinar e avaliar o modelo.
+4. Utilize o módulo `model_usage` para realizar predições em novas imagens.
+
+## Observações
+
+- Certifique-se de que o dataset está organizado nos diretórios corretos antes de executar o código.
+- O modelo treinado será salvo no arquivo `dog_or_cat.keras`.
+- Resumo dos notebooks:
+  - **main.ipynb**:
+    - **Objetivo**: Classificar imagens como "cão" ou "gato".
+    - **Pipeline**:
+      1. **Pré-processamento**:
+         - Redimensionamento de imagens para 300x300 pixels.
+         - Normalização dos valores dos pixels.
+      2. **Modelo**:
+         - Baseado na arquitetura **MobileNetV2**.
+         - Adição de camadas densas para classificação binária.
+      3. **Treinamento**:
+         - Utiliza callbacks como **EarlyStopping**, **ReduceLROnPlateau**, e **ModelCheckpoint**.
+         - Salva o modelo no arquivo `dog_or_cat.keras`.
+      4. **Avaliação**:
+         - Exibe métricas como acurácia, matriz de confusão e **Recall**.
+      5. **Predição**:
+         - Classifica novas imagens como "cão" ou "gato".
+         - Dependendo do resultado, utiliza os modelos de raças de cães ou gatos (`dogbreed` ou `catbreed`).
+  - **catbreed_v5.ipynb**:
+    - **Objetivo**: Classificar imagens de 24 raças de gatos.
+    - **Pipeline**:
+      1. **Pré-processamento**:
+         - Criação de um dataframe com imagens e classes.
+         - Divisão dos dados em treino (80%) e teste (20%).
+         - Codificação one-hot para as classes.
+      2. **Modelo**:
+         - Baseado na arquitetura **EfficientNetV2B3**.
+         - Adição de camadas densas para classificação.
+         - Configuração do modelo com otimizador Adam e função de perda `categorical_crossentropy`.
+      3. **Treinamento**:
+         - Utiliza callbacks como **EarlyStopping**, **ReduceLROnPlateau**, e **ModelCheckpoint**.
+         - Salva o modelo no arquivo `catbreed_model_v5.h5`.
+      4. **Resultados**:
+         - Exibe métricas como acurácia e perda durante o treinamento.
+         - Avalia o modelo no conjunto de teste.
+  - **dogbreed_v3_reduced_enhanced.ipynb**:
+    - **Objetivo**: Classificar imagens de 24 raças de cães.
+    - **Pipeline**:
+      1. **Pré-processamento**:
+         - Criação de um dataframe com imagens e classes.
+         - Divisão dos dados em treino (80%) e teste (20%).
+      2. **Modelo**:
+         - Baseado na arquitetura **EfficientNetV2B3**.
+         - Adição de camadas densas para classificação.
+         - Configuração do modelo com otimizador Adam e função de perda `categorical_crossentropy`.
+      3. **Treinamento**:
+         - Utiliza callbacks como **EarlyStopping**, **ReduceLROnPlateau**, e **ModelCheckpoint**.
+         - Salva o modelo no arquivo `model_24_webscraped_classes.h5`.
+      4. **Resultados**:
+         - Exibe métricas como acurácia e perda durante o treinamento.
+         - Avalia o modelo no conjunto de teste.
+
+## Exemplos de Uso
+
+```python
+import model_usage as mu
+
+# Classificar uma imagem
+mu.dog_cat_breed_classifier('image.jpg')
+```
+
+Este projeto demonstra como utilizar redes neurais convolucionais para resolver problemas de classificação de imagens de forma eficiente.
