@@ -8,30 +8,30 @@ import numpy as np
 import tensorflow as tf
 
 DOG_CLASSES = [
-    "n02085620-Chihuahua",
-    "n02085936-Maltese_dog",
-    "n02086079-Pekinese",
-    "n02086240-Shih-Tzu",
-    "n02086910-papillon",
-    "n02088094-Afghan_hound",
-    "n02088364-beagle",
-    "n02088466-bloodhound",
-    "n02094433-Yorkshire_terrier",
-    "n02097047-miniature_schnauzer",
-    "n02099601-golden_retriever",
-    "n02099712-Labrador_retriever",
-    "n02106662-German_shepherd",
-    "n02108915-French_bulldog",
-    "n02110185-Siberian_husky",
-    "n02113799-standard_poodle",
-    "n02108089-boxer",
-    "n02102318-cocker_spaniel",
-    "n02109525-Saint_Bernard",
-    "n02110958-pug",
-    "n02106550-Rottweiler",
-    "n02105162-malinois",
-    "n02106166-Border_collie",
-    "n02107312-miniature_pinscher"
+    "Chihuahua",
+    "Maltese_dog",
+    "Pekinese",
+    "Shih-Tzu",
+    "papillon",
+    "Afghan_hound",
+    "beagle",
+    "bloodhound",
+    "Yorkshire_terrier",
+    "miniature_schnauzer",
+    "golden_retriever",
+    "Labrador_retriever",
+    "German_shepherd",
+    "French_bulldog",
+    "Siberian_husky",
+    "standard_poodle",
+    "boxer",
+    "cocker_spaniel",
+    "Saint_Bernard",
+    "pug",
+    "Rottweiler",
+    "malinois",
+    "Border_collie",
+    "miniature_pinscher"
 ]
 
 CAT_CLASSES = [
@@ -78,7 +78,7 @@ def breed_preprocessing(file, size):
     return img
 
 def dog_or_cat_classifier(file):
-    model = load_model('C:/Users/kaiqu/projeto-final-backup/modelos/dog_or_cat.keras')
+    model = load_model('C:/Users/kaiqu/dog-v-cat/modelos/dog_or_cat.keras')
     img = dog_cat_preprocessing(file, 300)
 
     plt.imshow(img)
@@ -93,7 +93,7 @@ def dog_or_cat_classifier(file):
     return pred_prob
 
 def dog_breed_classifier(file):
-    model = load_model('C:/Users/kaiqu/projeto-final-backup/modelos/model_24_webscraped_classes.h5')
+    model = load_model('C:/Users/kaiqu/dog-v-cat/modelos/model_24_webscraped_classes.h5')
 
     img = breed_preprocessing(file, 300)
     img_expanded = np.expand_dims(img, axis=0)
@@ -109,7 +109,7 @@ def dog_breed_classifier(file):
         print(f"Raça: {DOG_CLASSES[i]} - Probabilidade: {(previsao[0][i]) * 100:.2f}%")
 
 def cat_breed_classifier(file):
-    model = load_model('C:/Users/kaiqu/projeto-final-backup/modelos/catbreed_model_v5.h5')
+    model = load_model('C:/Users/kaiqu/dog-v-cat/modelos/catbreed_model_v5.h5')
 
     img = breed_preprocessing(file, 224)
     img_expanded = np.expand_dims(img, axis=0)
@@ -135,3 +135,14 @@ def dog_cat_breed_classifier(image):
     else:
         print("Rótulo previsto: Gato\n")
         cat_breed_classifier(image)
+
+""" def dog_cat_breed_classifier(image_path):
+    pred_prob = dog_or_cat_classifier(image_path)
+    label = "Cachorro" if pred_prob[0][0] >= 0.5 else "Gato"
+    detalhes = []
+    if label == "Cachorro":
+        detalhes = dog_breed_classifier(image_path)  # faça essa função devolver lista em vez de print
+    else:
+        detalhes = cat_breed_classifier(image_path)
+    return label, detalhes
+ """
