@@ -8,6 +8,8 @@ O dataset inicial ficou muito pequeno, por isso, tive que usar um código de Web
 cd gui
 python gui.py
 ```
+### Exemplo de uso na interface
+- ![Matriz de confusão](images/imagens%20para%20o%20relatório/gui.png)
 
 ## Funcionalidades Principais
 
