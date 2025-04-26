@@ -7,6 +7,18 @@ import cv2
 import numpy as np
 import tensorflow as tf
 
+import os
+
+# 1. pasta onde este arquivo está
+HERE = os.path.dirname(__file__)
+
+# 2. sobe um nível para a raiz do projeto
+BASE_DIR = os.path.abspath(os.path.join(HERE, os.pardir))
+
+# 3. monta o path até a pasta modelos
+MODELS_DIR = os.path.join(BASE_DIR, 'modelos')
+
+
 DOG_CLASSES = [
     "Chihuahua",
     "Maltese_dog",
@@ -75,7 +87,8 @@ def breed_preprocessing(image_path, size):
     return img
 
 def dog_or_cat_classifier(path):
-    model = load_model("C:/Users/kaiqu/dog-v-cat/modelos/dog_or_cat.keras")
+    modelo_path = os.path.join(MODELS_DIR, "dog_or_cat.keras")
+    model = load_model(modelo_path)
     img = dog_cat_preprocessing(path, 300)
     prob = model.predict(img[None, ...])[0][0]
 
@@ -87,17 +100,17 @@ def top5(preds, class_names):
     return [(class_names[i], float(preds[i] * 100)) for i in idxs]
 
 def dog_breed_classifier(path):
-    model = load_model("C:/Users/kaiqu/dog-v-cat/modelos/model_24_webscraped_classes.h5")
+    modelo_path = os.path.join(MODELS_DIR, "model_24_webscraped_classes.h5")
+    model = load_model(modelo_path)
     img = breed_preprocessing(path, 300)
     preds = model.predict(img[None, ...])[0]
-
     return top5(preds, DOG_CLASSES)
 
 def cat_breed_classifier(path):
-    model = load_model("C:/Users/kaiqu/dog-v-cat/modelos/catbreed_model_v5.h5")
+    modelo_path = os.path.join(MODELS_DIR, "catbreed_model_v5.h5")
+    model = load_model(modelo_path)
     img = breed_preprocessing(path, 224)
     preds = model.predict(img[None, ...])[0]
-
     return top5(preds, CAT_CLASSES)
 
 def dog_cat_breed_classifier(path):

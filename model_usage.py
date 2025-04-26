@@ -78,7 +78,7 @@ def breed_preprocessing(file, size):
     return img
 
 def dog_or_cat_classifier(file):
-    model = load_model('C:/Users/kaiqu/dog-v-cat/modelos/dog_or_cat.keras')
+    model = load_model('modelos/dog_or_cat.keras')
     img = dog_cat_preprocessing(file, 300)
 
     plt.imshow(img)
@@ -93,7 +93,7 @@ def dog_or_cat_classifier(file):
     return pred_prob
 
 def dog_breed_classifier(file):
-    model = load_model('C:/Users/kaiqu/dog-v-cat/modelos/model_24_webscraped_classes.h5')
+    model = load_model('modelos/model_24_webscraped_classes.h5')
 
     img = breed_preprocessing(file, 300)
     img_expanded = np.expand_dims(img, axis=0)
@@ -109,7 +109,7 @@ def dog_breed_classifier(file):
         print(f"Raça: {DOG_CLASSES[i]} - Probabilidade: {(previsao[0][i]) * 100:.2f}%")
 
 def cat_breed_classifier(file):
-    model = load_model('C:/Users/kaiqu/dog-v-cat/modelos/catbreed_model_v5.h5')
+    model = load_model('modelos/catbreed_model_v5.h5')
 
     img = breed_preprocessing(file, 224)
     img_expanded = np.expand_dims(img, axis=0)
@@ -135,14 +135,3 @@ def dog_cat_breed_classifier(image):
     else:
         print("Rótulo previsto: Gato\n")
         cat_breed_classifier(image)
-
-""" def dog_cat_breed_classifier(image_path):
-    pred_prob = dog_or_cat_classifier(image_path)
-    label = "Cachorro" if pred_prob[0][0] >= 0.5 else "Gato"
-    detalhes = []
-    if label == "Cachorro":
-        detalhes = dog_breed_classifier(image_path)  # faça essa função devolver lista em vez de print
-    else:
-        detalhes = cat_breed_classifier(image_path)
-    return label, detalhes
- """
