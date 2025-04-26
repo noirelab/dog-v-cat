@@ -1,7 +1,7 @@
 # dog-v-cat
 
 Este projeto utiliza aprendizado de máquina para classificar imagens de cães e gatos. O modelo foi treinado utilizando a arquitetura **MobileNetV2** e **EfficientNetV2B3** e implementado com a biblioteca **TensorFlow**.
-O dataset inicial ficou muito pequeno, por isso, tive que usar um código de WebScraping para aumentar em praticamente 416% o dataset de raças de cachorro.
+O dataset inicial ficou muito pequeno, por isso, foi necessário usar um código de WebScraping para aumentar em praticamente 416% o dataset de raças de cachorro.
 
 ## Como iniciar
 ```bash
