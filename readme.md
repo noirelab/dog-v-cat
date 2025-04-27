@@ -6,6 +6,7 @@ O dataset inicial ficou muito pequeno, por isso, tive que usar um código de Web
 ## Como iniciar
 ```bash
 cd gui
+pip install -r requirements.txt
 python gui.py
 ```
 ### Exemplo de uso na interface
