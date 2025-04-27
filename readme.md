@@ -95,20 +95,20 @@ python gui.py
         - **Objetivo**: Classificar imagens de 24 raças de gatos.
         - **Pipeline**:
             1. **Pré-processamento**:
-            - Criação de um dataframe com imagens e classes.
-            - Divisão dos dados em treino (80%) e teste (20%).
-            - Codificação one-hot para as classes.
+                - Criação de um dataframe com imagens e classes.
+                - Divisão dos dados em treino (80%) e teste (20%).
+                - Codificação one-hot para as classes.
             2. **Modelo**:
-            - Baseado na arquitetura **EfficientNetV2B3**.
-            - Adição de camadas densas para classificação.
-            - Configuração do modelo com otimizador Adam e função de perda `categorical_crossentropy`.
+                - Baseado na arquitetura **EfficientNetV2B3**.
+                - Adição de camadas densas para classificação.
+                - Configuração do modelo com otimizador Adam e função de perda `categorical_crossentropy`.
             3. **Treinamento**:
-            - Utiliza callbacks como **EarlyStopping**, **ReduceLROnPlateau**, e **ModelCheckpoint**.
-            - Salva o modelo no arquivo `catbreed_model_v5.h5`.
+                - Utiliza callbacks como **EarlyStopping**, **ReduceLROnPlateau** e **ModelCheckpoint**.
+                - Salva o modelo no arquivo `catbreed_model_v5.h5`.
             4. **Resultados**:
-            - Exibe métricas como acurácia e perda durante o treinamento.
-            - Avalia o modelo no conjunto de teste.
-            - ![Matriz de confusão](images/imagens%20para%20o%20relatório/cat_conf_matrix.png)
+                - Exibe métricas como acurácia e perda durante o treinamento.
+                - Avalia o modelo no conjunto de teste.
+                - ![Matriz de confusão](images/imagens%20para%20o%20relatório/cat_conf_matrix.png)
 
 ## Exemplos de Uso dentro do main.ipynb
 
